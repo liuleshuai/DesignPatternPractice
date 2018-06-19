@@ -16,6 +16,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 
 public class Original {
+    //被观察者
     public static class Taobao {
         List<Package> list;
         /**
@@ -62,6 +63,7 @@ public class Original {
         }
     }
 
+    //观察者
     public static class Package {
         public void receive() {
             System.out.println(Thread.currentThread().getName() + "--------- 收到快递了！");
