@@ -2,6 +2,11 @@ package com.example.liukuo.Algorithm;
 
 /**
  * 快速排序
+ * 基本思路：
+ * 在无序数组中，取第一个数n0作为基准，新建一个i,j下标分别从数组的前后两侧查找大于n0的数，
+ * 并将这两个数交换，直到i==j，此时i的位置即为n0在此数组中的排序后位置（比它小的都在前面，大的在后面）
+ * 故将n0与ni进行交换，接下来可将数组分为两组数据分别采用递归的形式设置其n0的位置。
+ * <p>
  * 平均时间复杂度：O(nlogn)
  * 最好情况：O(nlogn)
  * 最坏情况：O(n²)
@@ -13,17 +18,18 @@ package com.example.liukuo.Algorithm;
 
 public class QuickSort {
     private static void quickSort(int[] data, int start, int end) {
-        if (start > end) {
+        if (start >= end) {
             return;
         }
         int i = start, j = end;
         int key = data[start];
         while (i < j) {
-            while (i < j && data[i] <= key) {
-                i++;
-            }
+            //此处注意顺序,如果是先左后右的话，需要i-1
             while (i < j && data[j] >= key) {
                 j--;
+            }
+            while (i < j && data[i] <= key) {
+                i++;
             }
             if (i < j) {
                 int temp = data[i];
