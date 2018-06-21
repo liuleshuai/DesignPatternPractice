@@ -12,7 +12,7 @@ package com.example.liukuo.Algorithm;
  */
 
 public class QuickSort {
-    private static void quicksort(int[] data, int start, int end) {
+    private static void quickSort(int[] data, int start, int end) {
         if (start > end) {
             return;
         }
@@ -30,18 +30,18 @@ public class QuickSort {
                 data[i] = data[j];
                 data[j] = temp;
             }
-            data[start] = data[i];
-            data[i] = key;
-
-            quicksort(data, start, i - 1);
-            quicksort(data, i + 1, end);
         }
+        data[start] = data[i];
+        data[i] = key;
+
+        quickSort(data, start, i - 1);
+        quickSort(data, i + 1, end);
     }
 
     public static void main(String[] args) {
         int[] data = {3, 4, 5, 1, 1, 2, 7, 2, 1, 0, 10, 8};
         if (data.length > 0) {
-            quicksort(data, 0, data.length - 1);
+            quickSort(data, 0, data.length - 1);
         }
         for (int i = 0; i < data.length; i++) {
             System.out.print(data[i] + ",");
