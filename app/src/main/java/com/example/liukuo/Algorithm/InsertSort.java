@@ -5,7 +5,13 @@ package com.example.liukuo.Algorithm;
  * <p>
  * 基本思想：在一个有序数组中插入新的数据并排序。
  * 其实就是你玩扑克牌的时候，排序你自己的牌的思路从后面抽出牌，插入到前面的牌中
- * 时间复杂度O(n^2)
+ *
+ * 平均时间复杂度：O(n^2)
+ * 最好情况：O(n)
+ * 最坏情况：O(n^2)
+ * 空间复杂度：O(1)
+ * 占用常数类型不占用额外内存
+ * 稳定排序
  * Created by LiuKuo at 2018/6/20
  */
 
@@ -26,7 +32,7 @@ public class InsertSort {
     }
 
     public static void main(String[] args) {
-        int[] data = {3, 4, 5, 1, 1, 2, 7, 2, 10, 8};
+        int[] data = {3, 4, 5, 1, 1, 2, 7, 2, 1, 0, 10, 8};
         sort(data);
         for (int i = 0; i < data.length; i++) {
             System.out.print(data[i] + ",");
