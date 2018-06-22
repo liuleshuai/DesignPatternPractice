@@ -8,6 +8,7 @@ package com.example.liukuo.Algorithm;
  * 2.重复分组，直到分到的组不能再分（最后是单个数为一组）
  * 3.反向比较排序，合并上述分开的组
  * 时间复杂度 O(nlogn)
+ * 稳定排序
  */
 public class MergeSort {
 
