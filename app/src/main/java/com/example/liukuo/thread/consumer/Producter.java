@@ -10,11 +10,15 @@ import java.util.concurrent.LinkedBlockingDeque;
 
 public class Producter implements Runnable {
     private int size;
-    private BlockingQueue<Integer> queue;
+    private final BlockingQueue<Integer> queue;
 
     public Producter(int size) {
         this.size = size;
         queue = new LinkedBlockingDeque<>(size);
+    }
+
+    public BlockingQueue<Integer> getQueue() {
+        return queue;
     }
 
     @Override
@@ -22,11 +26,14 @@ public class Producter implements Runnable {
         while (true) {
             try {
                 Thread.sleep(1000);
-                if (queue.size() >= size) {
-                    queue.wait();
+                synchronized (queue) {
+                    if (queue.size() >= size) {
+                        System.out.println("仓库满了，等待中...");
+                        queue.wait();
+                    }
+                    queue.put(produce());
+                    queue.notify();
                 }
-                queue.put(produce());
-                queue.notify();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -35,8 +42,8 @@ public class Producter implements Runnable {
     }
 
     public int produce() {
-        int temp = new Random().nextInt();
-        System.out.println("Thread:" + Thread.currentThread().getId() + "produce" + temp);
+        int temp = new Random().nextInt(10000);
+        System.out.println("生产编号：" + temp + "，库存：" + (queue.size() + 1));
         return temp;
     }
 }
