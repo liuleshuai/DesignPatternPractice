@@ -22,10 +22,11 @@ public class HeapSort {
 
     /**
      * 将数据构建成最小堆
+     * 最小堆，是一种经过排序的完全二叉树，其中任一非终端节点的数据值均不大于其左子节点和右子节点的值。
      */
     private static void makeMinHeap(int[] data) {
         int count = data.length;
-        // 倒数第二层开始排序
+        // 倒数第二层开始排序，最后一个叶子节点的父节点
         for (int i = (count - 1) / 2; i >= 0; i--) {
             fixDown(data, i, count);
         }
